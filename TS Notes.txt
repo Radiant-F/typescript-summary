@@ -26,9 +26,21 @@ never
 enum
 tuple
 
-// tuple
+== tuple
 Tuple is a fixed length array where each element has a particular type.
 
-// enum
+== enum
 Enum represents a list of related constants
 const enum Size {Small, Medium, Large}
+
+// Advanced Types
+== Type Aliases
+Define a custom shape. Make object reusable with different value. Don't repeat yourself.
+The other object might have other properties. Some object might not have a consistent shape, because we don't have a single place to define the shape of an object.
+Making the code easy to read.
+
+== Union Types
+With union type, we can give a variable or a function parameter more than one type
+
+== Intersection Types
+ 
