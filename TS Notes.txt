@@ -1,0 +1,34 @@
+// What is TypeScript
+TypeScript is a programming language to address shortcomings of JavaScript.
+Every JavaScript file is a valid TypeScript file.
+TypeScript is essentially JavaScript with type checking.
+In TypeScript we explicitly set the type of our variables upon declaration 
+
+// TypeScript Beneftis:
+1. Static typing
+2. Code completion
+3. Refactoring
+4. Shorthand notation
+
+// Static typing example
+== Statically-typed (C++, C#, Java)
+int number = 10;
+number = "a"; <-- ERROR
+== Dynamically-typed
+let number = 10;
+number = "a"; <-- WORKS
+Math.random(number); <-- THE PROBLEM
+
+// Built-In Types
+any
+unknown
+never
+enum
+tuple
+
+// tuple
+Tuple is a fixed length array where each element has a particular type.
+
+// enum
+Enum represents a list of related constants
+const enum Size {Small, Medium, Large}
