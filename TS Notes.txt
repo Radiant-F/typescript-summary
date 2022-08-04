@@ -43,4 +43,13 @@ Making the code easy to read.
 With union type, we can give a variable or a function parameter more than one type
 
 == Intersection Types
- 
+See code example.
+
+== Literal Types
+Limit the values assigned to a variable.
+
+== Nullable Types
+Common bugs are came from null, undefined, or unexpected data type's method.
+
+== Optional Chaining
+Optional property access operator.

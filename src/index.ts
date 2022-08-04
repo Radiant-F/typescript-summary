@@ -3,34 +3,34 @@
 // console.log(age);
 
 // ==== The any Type is Bad
-// let sales = 123_456_789;
-// let course = "TypeScript";
-// let is_published = true;
-// let level;
+let sales = 123_456_789;
+let course = "TypeScript";
+let is_published = true;
+let level;
 
-// function render(component: any) {
-//   console.log(component);
-// }
+function render(component: any) {
+  console.log(component);
+}
 
 // ==== Arrays
-// let numbers: number[] = [];
-// numbers[0] = 1;
-// numbers[1] = 2;
-// numbers.forEach((n) => n); // code completion/intellisense
-// let numbers_ = []; // avoid this "any" type
+let numbers: number[] = [];
+numbers[0] = 1;
+numbers[1] = 2;
+numbers.forEach((n) => n); // code completion/intellisense
+let numbers_ = []; // avoid this "any" type
 
 // ==== Tuples
-// let user: [number, string] = [20, "Radiant"];
-// user.push(1) <== no error but will fail
+let user: [number, string] = [20, "Radiant"];
+user.push(1); // no error but will fail
 
 // ==== enum
-// const enum Size { // PascalCase
-//   Small = 1, // the default value is 0
-//   Medium,
-//   Large,
-// }
-// let mySize: Size = Size.Medium;
-// console.log(mySize);
+const enum Size { // PascalCase
+  Small = 1, // the default value is 0
+  Medium,
+  Large,
+}
+let mySize: Size = Size.Medium;
+console.log(mySize);
 /**
  * default value can be reset.
  * if one reset, the other must be explicitly reset as well.
@@ -55,19 +55,21 @@ calculateTax(11_000, 2023); // the second parameter will overwrite the default v
  */
 
 // ==== Objects
-// let employee: {
-//   // this is shape object
-//   readonly id: number;
-//   name: string;
-//   retire: (date: Date) => void;
-// } = {
-//   id: 1,
-//   name: "Radiant",
-//   retire: (date: Date) => {
-//     console.log(date);
-//   },
-// };
-// employee.id = 2; <== the value of this property cannot be modified because it's readonly
+let employee: {
+  // this is shape object
+  readonly unique_id: string; // value cannot be modified because it's readonly
+  id: number;
+  name: string;
+  retire: (date: Date) => void;
+} = {
+  unique_id: "123",
+  id: 1,
+  name: "Radiant",
+  retire: (date: Date) => {
+    console.log(date);
+  },
+};
+employee.id = 2;
 
 // ==== Type alias
 type Employee = {
@@ -76,7 +78,7 @@ type Employee = {
   retire: (date: Date) => void;
 }; // this object can be reused in multiple places
 
-let employee: Employee = {
+let employee_: Employee = {
   id: 20,
   name: "Radiant",
   retire: (date: Date) => {
@@ -93,7 +95,7 @@ function kgToLbs(weight: number | string): number {
 kgToLbs(10);
 kgToLbs("10kg");
 
-// Intersection types
+// ==== Intersection types
 type Draggable = {
   drag: () => void;
 };
@@ -106,3 +108,49 @@ let textBox: UIWidget = {
   drag: () => {},
   resize: () => {},
 };
+
+// ==== Literal types
+let qty1: 100 = 100;
+
+let qty2: 50 | 100 = 50;
+
+type Quantity = 50 | 100;
+let qty3: Quantity = 100;
+
+type Metric = "cm" | "inch";
+
+// ==== Nullable types
+function greet(name: string | null) {
+  if (name) console.log(name.toUpperCase());
+  else console.log("the name is null.");
+}
+
+greet(null);
+
+// Optional chaining
+type Customer = {
+  birthday: Date;
+  name?: string;
+  misc: [""];
+};
+
+function getCustomer(id: number): Customer | null | undefined {
+  return id === 0
+    ? null
+    : { birthday: new Date(), name: "Radiant", misc: [""] };
+}
+
+let customer = getCustomer(0);
+
+if (customer !== null && customer !== undefined) console.log(customer.birthday); // w/o Optional chaining
+
+// Optional property access operator
+console.log(customer?.birthday);
+console.log(customer?.name?.toLowerCase);
+
+// Optional element access operator
+console.log(customer?.misc[0]);
+
+// Optional call
+let log: any = null;
+log?.("a");
